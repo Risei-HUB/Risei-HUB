@@ -1,100 +1,98 @@
 -- =========================================================================
--- 🪐 RISEI-HUB | QUANTUM ENGINE INTEGRATION (MAIN.LUA - FIXED LINK)
+-- 🪐 RISEI-HUB | PURE CONTROL PANEL SHELL (MAIN.LUA)
 -- =========================================================================
 
--- The stable official link that successfully executes on Delta
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "🪐 Risei-HUB | Quantum Edition",
-   LoadingTitle = "Booting Risei-HUB Engine...",
+   LoadingTitle = "Booting Pure UI Shell...",
    LoadingSubtitle = "by Risei",
    ConfigurationSaving = {Enabled = false},
    KeySystem = false
 })
 
--- =========================================================================
--- NETWORK COMMUNICATION CHANNELS (QUANTUM ANALYSIS)
--- =========================================================================
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local CommF = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommF_")
-local CommE = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommE")
+local TeleportService = game:GetService("TeleportService")
 
--- =========================================================================
--- TABS
--- =========================================================================
+-- --- TABS ---
 local MainTab = Window:CreateTab("🏠 Home", 4483362458)
 local FarmTab = Window:CreateTab("🌾 Auto Farm", 4483345909)
+local FruitTab = Window:CreateTab("🍓 Fruit Farm", 4483345909)
 local CombatTab = Window:CreateTab("⚔️ Combat & Stats", 4483345909)
 
--- =========================================================================
--- CONTENTS & DIRECT COMMAND INJECTIONS
--- =========================================================================
-
 MainTab:CreateParagraph({
-   Title = "Welcome to the Lab!", 
-   Content = "The intermediary spy tools have been dismantled. Clean remote packets filtered from the QuantumOnyx framework are now fully integrated as automated buttons below."
+   Title = "Pure Shell Active!", 
+   Content = "Zero backend logic remains inside this panel. Every action invokes a dedicated cloud module from your repository."
 })
 
--- --- AUTO FARM TAB ---
+-- =========================================================================
+-- 🌾 AUTO FARM MODULE INJECTIONS
+-- =========================================================================
 FarmTab:CreateButton({
    Name = "Take Level 1 Quest (Bandit Quest)",
    Callback = function()
-      -- Original packet bypassed directly to the server:
-      pcall(function()
-         CommF:InvokeServer("StartQuest", "BanditQuest1", 1)
-      end)
-      Rayfield:Notify({Title = "🪐 Risei-HUB", Content = "Quest packet successfully injected!", Duration = 2})
+      _G.FarmAction = "StartQuest"
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Risei-HUB/Risei-HUB/main/Farm.lua"))()
+      Rayfield:Notify({Title = "🪐 Risei-HUB", Content = "Farm module invoked.", Duration = 2})
    end,
 })
 
 FarmTab:CreateButton({
    Name = "Abandon Current Quest",
    Callback = function()
-      -- Direct packet to clear/cancel the current quest active on the server
-      pcall(function()
-         CommF:InvokeServer("AbandonQuest")
-      end)
-      Rayfield:Notify({Title = "🪐 Risei-HUB", Content = "Quest abandoned successfully.", Duration = 2})
+      _G.FarmAction = "AbandonQuest"
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Risei-HUB/Risei-HUB/main/Farm.lua"))()
    end,
 })
 
--- --- COMBAT & STATS TAB ---
+-- =========================================================================
+-- 🍓 FRUIT MODULE INJECTIONS
+-- =========================================================================
+_G.AutoFruitFarm = false
+FruitTab:CreateToggle({
+   Name = "Auto Collect & Server Hop",
+   CurrentValue = false,
+   Flag = "FruitFarmToggle",
+   Callback = function(Value)
+      _G.AutoFruitFarm = Value
+      if _G.AutoFruitFarm then
+         Rayfield:Notify({Title = "🍓 FRUIT ENGINE", Content = "Deploying cloud fruit engine...", Duration = 2})
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/Risei-HUB/Risei-HUB/main/Fruit.lua"))()
+      end
+   end,
+})
+
+FruitTab:CreateButton({Name = "Teleport to: First Sea", Callback = function() TeleportService:Teleport(2753915549) end})
+FruitTab:CreateButton({Name = "Teleport to: Second Sea", Callback = function() TeleportService:Teleport(4442272183) end})
+FruitTab:CreateButton({Name = "Teleport to: Third Sea", Callback = function() TeleportService:Teleport(7449423635) end})
+
+-- =========================================================================
+-- ⚔️ COMBAT MODULE INJECTIONS
+-- =========================================================================
+_G.AutoClick = false
 CombatTab:CreateToggle({
    Name = "Auto Clicker (M1)",
    CurrentValue = false,
    Flag = "AutoClickToggle",
    Callback = function(Value)
       _G.AutoClick = Value
-      task.spawn(function()
-         while _G.AutoClick do
-            -- Virtual network packet to bypass and trigger melee or sword attacks instantly
-            pcall(function()
-               local VirtualUser = game:GetService("VirtualUser")
-               VirtualUser:CaptureController()
-               VirtualUser:ClickButton1(Vector2.new(850, 520))
-            end)
-            task.wait(0.1) -- Attack speed delay (10 clicks per second)
-         end
-      end)
+      _G.CombatAction = "ToggleClick"
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Risei-HUB/Risei-HUB/main/Combat.lua"))()
    end,
 })
 
 CombatTab:CreateButton({
    Name = "Upgrade Melee (+5 Points)",
-   Callback = function()
-      -- QuantumOnyx stat allocation packet for combat optimization
-      pcall(function()
-         CommF:InvokeServer("AddPoint", "Melee", 5)
-      end)
-   end,
+   Callback = function() 
+      _G.CombatAction = "UpgradeMelee"
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Risei-HUB/Risei-HUB/main/Combat.lua"))()
+   end
 })
 
 CombatTab:CreateButton({
    Name = "Upgrade Defense (+5 Points)",
-   Callback = function()
-      pcall(function()
-         CommF:InvokeServer("AddPoint", "Defense", 5)
-      end)
-   end,
+   Callback = function() 
+      _G.CombatAction = "UpgradeDefense"
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Risei-HUB/Risei-HUB/main/Combat.lua"))()
+   end
 })
