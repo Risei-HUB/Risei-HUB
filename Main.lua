@@ -19,7 +19,7 @@ local MainTab = Window:CreateTab("🏠 Home", 4483362458)
 local FarmTab = Window:CreateTab("🌾 Auto Farm", 4483345909)
 local FruitTab = Window:CreateTab("🍓 Fruit Farm", 4483345909)
 local CombatTab = Window:CreateTab("⚔️ Combat & Stats", 4483345909)
-local Sea Select = Window:CreateTab("Sea Select", 4483345909)
+local SeaSelectTab = Window:CreateTab("Sea Select", 4483345909)
 
 MainTab:CreateParagraph({
    Title = "Pure Shell Active!", 
@@ -85,10 +85,9 @@ FruitTab:CreateToggle({
 })
 
 -- =========================================================================
--
-Sea Select Tab:CreateButton({Name = "Teleport to: First Sea", Callback = function() TeleportService:Teleport(2753915549) end})
-Sea Select Tab:CreateButton({Name = "Teleport to: Second Sea", Callback = function() TeleportService:Teleport(4442272183) end})
-Sea Select Tab:CreateButton({Name = "Teleport to: Third Sea", Callback = function() TeleportService:Teleport(7449423635) end})
+SeaSelectTab:CreateButton({Name = "Teleport to: First Sea", Callback = function() TeleportService:Teleport(2753915549) end})
+SeaSelectTab:CreateButton({Name = "Teleport to: Second Sea", Callback = function() TeleportService:Teleport(4442272183) end})
+SeaSelectTab:CreateButton({Name = "Teleport to: Third Sea", Callback = function() TeleportService:Teleport(7449423635) end})
 
 -- =========================================================================
 -- ⚔️ COMBAT MODULE INJECTIONS
