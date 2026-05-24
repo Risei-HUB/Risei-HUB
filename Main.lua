@@ -4,10 +4,10 @@ print("Risei-HUB başarıyla yüklendi, siber altyapı hazır!")
 -- 🪐 RISEI-HUB OFFICIAL MAIN MOTOR (RAYFIELD EDITION)
 -- =========================================================================
 
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+ Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "🪐 Risei-HUB | Ultimate Edition",
+   Name = "🪐 Risei-HUB | LogBook",
    LoadingTitle = "Risei-HUB Yükleniyor...",
    LoadingSubtitle = "by Risei",
    ConfigurationSaving = {
