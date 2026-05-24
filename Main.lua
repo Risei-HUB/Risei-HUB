@@ -1,49 +1,99 @@
 -- =========================================================================
--- 🪐 RISEI-HUB | ULTIMATE MAIN MOTOR (STABLE RAYFIELD)
+-- 🪐 RISEI-HUB | QUANTUM ENGINE INTEGRATION (MAIN.LUA - ENGLISH)
 -- =========================================================================
 
--- Rayfield linkini en stabil ve patlamayan alternatif hatla güncelledik:
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftware-Design/Rayfield/main/source.lua'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "🪐 Risei-HUB | Ultimate Edition",
-   LoadingTitle = "Risei-HUB Yükleniyor...",
+   Name = "🪐 Risei-HUB | Quantum Edition",
+   LoadingTitle = "Booting Risei-HUB Engine...",
    LoadingSubtitle = "by Risei",
    ConfigurationSaving = {Enabled = false},
    KeySystem = false
 })
 
 -- =========================================================================
--- SEKMELER (TABS)
+-- NETWORK COMMUNICATION CHANNELS (QUANTUM ANALYSIS)
 -- =========================================================================
-local MainTab = Window:CreateTab("🏠 Ana Sayfa", 4483362458)
-local LogTab = Window:CreateTab("📡 Paket Casusu", 4483345909)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local CommF = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommF_")
+local CommE = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommE")
 
 -- =========================================================================
--- İÇERİKLER & PROTOKOLLER
+-- TABS
 -- =========================================================================
+local MainTab = Window:CreateTab("🏠 Home", 4483362458)
+local FarmTab = Window:CreateTab("🌾 Auto Farm", 4483345909)
+local CombatTab = Window:CreateTab("⚔️ Combat & Stats", 4483345909)
+
+-- =========================================================================
+-- CONTENTS & DIRECT COMMAND INJECTIONS
+-- =========================================================================
+
 MainTab:CreateParagraph({
-   Title = "Selamlar Reis!", 
-   Content = "Risei-HUB siber laboratuvarına hoş geldin. Buradan oyun içi fonksiyonları dızlayıp kendi optimizasyon testlerini yapabilirsin."
+   Title = "Welcome to the Lab!", 
+   Content = "The intermediary spy tools have been dismantled. Clean remote packets filtered from the QuantumOnyx framework are now fully integrated as automated buttons below."
 })
 
-LogTab:CreateParagraph({
-   Title = "📡 Esnek Paket Casusu Sistemi", 
-   Content = "Aşağıdaki butonu açtığında, o eski sinir bozucu arayüz yerine senin için özel tasarladığımız minimalist Risei-Spy paneli ekrana gelecektir."
+-- --- AUTO FARM TAB ---
+FarmTab:CreateButton({
+   Name = "Take Level 1 Quest (Bandit Quest)",
+   Callback = function()
+      -- Original packet bypassed directly to the server:
+      pcall(function()
+         CommF:InvokeServer("StartQuest", "BanditQuest1", 1)
+      end)
+      Rayfield:Notify({Title = "🪐 Risei-HUB", Content = "Quest packet successfully injected!", Duration = 2})
+   end,
 })
 
-LogTab:CreateToggle({
-   Name = "Risei-Spy Arayüzünü Patlat",
+FarmTab:CreateButton({
+   Name = "Abandon Current Quest",
+   Callback = function()
+      -- Direct packet to clear/cancel the current quest active on the server
+      pcall(function()
+         CommF:InvokeServer("AbandonQuest")
+      end)
+      Rayfield:Notify({Title = "🪐 Risei-HUB", Content = "Quest abandoned successfully.", Duration = 2})
+   end,
+})
+
+-- --- COMBAT & STATS TAB ---
+CombatTab:CreateToggle({
+   Name = "Auto Clicker (M1)",
    CurrentValue = false,
-   Flag = "RiseiSpyToggle",
+   Flag = "AutoClickToggle",
    Callback = function(Value)
-      if Value then
-         Rayfield:Notify({
-            Title = "📡 SPY AKTİFLEŞTİRİLDİ", 
-            Content = "Minimalist casus motoru GitHub'dan başarıyla çekiliyor...", 
-            Duration = 3
-         })
-         loadstring(game:HttpGet("https://raw.githubusercontent.com/Risei-HUB/Risei-HUB/main/Log.lua"))()
-      end
+      _G.AutoClick = Value
+      task.spawn(function()
+         while _G.AutoClick do
+            -- Virtual network packet to bypass and trigger melee or sword attacks instantly
+            pcall(function()
+               local VirtualUser = game:GetService("VirtualUser")
+               VirtualUser:CaptureController()
+               VirtualUser:ClickButton1(Vector2.new(850, 520))
+            end)
+            task.wait(0.1) -- Attack speed delay (10 clicks per second)
+         end
+      end)
+   end,
+})
+
+CombatTab:CreateButton({
+   Name = "Upgrade Melee (+5 Points)",
+   Callback = function()
+      -- QuantumOnyx stat allocation packet for combat optimization
+      pcall(function()
+         CommF:InvokeServer("AddPoint", "Melee", 5)
+      end)
+   end,
+})
+
+CombatTab:CreateButton({
+   Name = "Upgrade Defense (+5 Points)",
+   Callback = function()
+      pcall(function()
+         CommF:InvokeServer("AddPoint", "Defense", 5)
+      end)
    end,
 })
