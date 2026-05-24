@@ -1,9 +1,9 @@
--- Risei-HUB Ana Menü Motoru (Yakında Burası Şenlenecek)
-print("Risei-HUB başarıyla yüklendi, siber altyapı hazır!")
--TIO
+-- =========================================================================
+-- 🪐 RISEI-HUB | ULTIMATE MAIN MOTOR (STABLE RAYFIELD)
 -- =========================================================================
 
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+-- Rayfield linkini en stabil ve patlamayan alternatif hatla güncelledik:
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftware-Design/Rayfield/main/source.lua'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "🪐 Risei-HUB | Ultimate Edition",
@@ -43,7 +43,6 @@ LogTab:CreateToggle({
             Content = "Minimalist casus motoru GitHub'dan başarıyla çekiliyor...", 
             Duration = 3
          })
-         -- Senin o güncellediğin esnek Log.lua dosyasını çağırıyoruz reis:
          loadstring(game:HttpGet("https://raw.githubusercontent.com/Risei-HUB/Risei-HUB/main/Log.lua"))()
       end
    end,
