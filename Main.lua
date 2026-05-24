@@ -1,63 +1,50 @@
 -- Risei-HUB Ana Menü Motoru (Yakında Burası Şenlenecek)
 print("Risei-HUB başarıyla yüklendi, siber altyapı hazır!")
--- =========================================================================
--- 🪐 RISEI-HUB OFFICIAL MAIN MOTOR (RAYFIELD EDITION)
+-TIO
 -- =========================================================================
 
- Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "🪐 Risei-HUB | LogBook",
+   Name = "🪐 Risei-HUB | Ultimate Edition",
    LoadingTitle = "Risei-HUB Yükleniyor...",
    LoadingSubtitle = "by Risei",
-   ConfigurationSaving = {
-      Enabled = false
-   },
-   Discord = {
-      Enabled = false
-   },
-   KeySystem = false -- Amelelik olmasın diye anahtar sistemini kapattık
+   ConfigurationSaving = {Enabled = false},
+   KeySystem = false
 })
 
 -- =========================================================================
 -- SEKMELER (TABS)
 -- =========================================================================
-local MainTab = Window:CreateTab("🏠 Ana Sayfa", 4483362458) -- Ev ikonu
-local LogTab = Window:CreateTab("📡 Webhook Log", 4483345909) -- Sinyal ikonu
+local MainTab = Window:CreateTab("🏠 Ana Sayfa", 4483362458)
+local LogTab = Window:CreateTab("📡 Paket Casusu", 4483345909)
 
 -- =========================================================================
--- ANA SAYFA İÇERİĞİ
+-- İÇERİKLER & PROTOKOLLER
 -- =========================================================================
-MainTab:CreateParagraph({Title = "Selamlar Reis!", Content = "Risei-HUB siber laboratuvarına hoş geldin. Dızladığın paketleri sisteme işlemeye buradan devam edebilirsin."})
+MainTab:CreateParagraph({
+   Title = "Selamlar Reis!", 
+   Content = "Risei-HUB siber laboratuvarına hoş geldin. Buradan oyun içi fonksiyonları dızlayıp kendi optimizasyon testlerini yapabilirsin."
+})
 
--- =========================================================================
--- WEBHOOK LOG SEKME İÇERİĞİ (BİZİM KRAL ÖZELLİK)
--- =========================================================================
-LogTab:CreateParagraph({Title = "📡 Paket Casusu Sistemi", Content = "Bu butonu açtığında arka planda görünmez bir kanca (hook) atılır ve akan CommF_ / CommE paketleri direkt Discord sunucuna fırlatılır."})
+LogTab:CreateParagraph({
+   Title = "📡 Esnek Paket Casusu Sistemi", 
+   Content = "Aşağıdaki butonu açtığında, o eski sinir bozucu arayüz yerine senin için özel tasarladığımız minimalist Risei-Spy paneli ekrana gelecektir."
+})
 
 LogTab:CreateToggle({
-   Name = "Casus Protokolünü Aktif Et",
+   Name = "Risei-Spy Arayüzünü Patlat",
    CurrentValue = false,
-   Flag = "WebhookSpyFlag",
+   Flag = "RiseiSpyToggle",
    Callback = function(Value)
-      _G.SpyAktif = Value
-      
-      if _G.SpyAktif then
+      if Value then
          Rayfield:Notify({
-            Title = "📡 SİNSİ PLUG-IN TETİKLENDİ",
-            Content = "GitHub'daki Log.lua casus motoru uzaktan başarıyla indirildi ve hafızaya enjekte edildi!",
-            Duration = 5,
-            Image = 4483345909,
+            Title = "📡 SPY AKTİFLEŞTİRİLDİ", 
+            Content = "Minimalist casus motoru GitHub'dan başarıyla çekiliyor...", 
+            Duration = 3
          })
-         -- Senin kurduğun depodaki log.lua dosyasını uzaktan zınk diye çağırıyoruz!
+         -- Senin o güncellediğin esnek Log.lua dosyasını çağırıyoruz reis:
          loadstring(game:HttpGet("https://raw.githubusercontent.com/Risei-HUB/Risei-HUB/main/Log.lua"))()
-      else
-         Rayfield:Notify({
-            Title = "🚨 CASUS PASİF",
-            Content = "Paket dinleme durduruldu. Sistem temiz.",
-            Duration = 3,
-            Image = 4483345909,
-         })
       end
    end,
 })
