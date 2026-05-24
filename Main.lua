@@ -19,6 +19,7 @@ local MainTab = Window:CreateTab("🏠 Home", 4483362458)
 local FarmTab = Window:CreateTab("🌾 Auto Farm", 4483345909)
 local FruitTab = Window:CreateTab("🍓 Fruit Farm", 4483345909)
 local CombatTab = Window:CreateTab("⚔️ Combat & Stats", 4483345909)
+local Sea Select = Window:CreateTab("Sea Select", 4483345909)
 
 MainTab:CreateParagraph({
    Title = "Pure Shell Active!", 
@@ -46,25 +47,48 @@ FarmTab:CreateButton({
 })
 
 -- =========================================================================
--- 🍓 FRUIT MODULE INJECTIONS
+-- 🍓 FRUIT MODULE INJECTIONS (NEW CONFIGURATION)
 -- =========================================================================
 _G.AutoFruitFarm = false
+_G.FruitTween = false
+_G.AutoStoreFruit = false
+
 FruitTab:CreateToggle({
-   Name = "Auto Collect & Server Hop",
+   Name = "Auto Fruit Collect",
    CurrentValue = false,
    Flag = "FruitFarmToggle",
    Callback = function(Value)
       _G.AutoFruitFarm = Value
       if _G.AutoFruitFarm then
-         Rayfield:Notify({Title = "🍓 FRUIT ENGINE", Content = "Deploying cloud fruit engine...", Duration = 2})
+         Rayfield:Notify({Title = "🍓 FRUIT ENGINE", Content = "Deploying fruit harvester...", Duration = 2})
          loadstring(game:HttpGet("https://raw.githubusercontent.com/Risei-HUB/Risei-HUB/main/Fruit.lua"))()
       end
    end,
 })
 
-FruitTab:CreateButton({Name = "Teleport to: First Sea", Callback = function() TeleportService:Teleport(2753915549) end})
-FruitTab:CreateButton({Name = "Teleport to: Second Sea", Callback = function() TeleportService:Teleport(4442272183) end})
-FruitTab:CreateButton({Name = "Teleport to: Third Sea", Callback = function() TeleportService:Teleport(7449423635) end})
+FruitTab:CreateToggle({
+   Name = "Fruit Tween (Smooth Fly)",
+   CurrentValue = false,
+   Flag = "FruitTweenToggle",
+   Callback = function(Value)
+      _G.FruitTween = Value -- Açılırsa süzülür, kapanırsa direkt teleport atar
+   end,
+})
+
+FruitTab:CreateToggle({
+   Name = "Auto Store Fruit (Inventory)",
+   CurrentValue = false,
+   Flag = "AutoStoreToggle",
+   Callback = function(Value)
+      _G.AutoStoreFruit = Value -- Açılırsa envantere atar, kapanırsa sadece elde tutar
+   end,
+})
+
+-- =========================================================================
+-
+Sea Select Tab:CreateButton({Name = "Teleport to: First Sea", Callback = function() TeleportService:Teleport(2753915549) end})
+Sea Select Tab:CreateButton({Name = "Teleport to: Second Sea", Callback = function() TeleportService:Teleport(4442272183) end})
+Sea Select Tab:CreateButton({Name = "Teleport to: Third Sea", Callback = function() TeleportService:Teleport(7449423635) end})
 
 -- =========================================================================
 -- ⚔️ COMBAT MODULE INJECTIONS
